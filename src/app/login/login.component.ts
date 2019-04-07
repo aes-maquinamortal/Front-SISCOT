@@ -8,10 +8,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  //username: string;
-  password: string;
   loginForm: FormGroup;
-  submitted: boolean=true;
+  submitted = false;
+  f;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,14 +22,18 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', [Validators.required]]
     });
+
+    this.f = this.loginForm.controls;
   }
 
-  get f() {  
-  return this.loginForm.controls; }
+  login() {
+    this.submitted = true;
 
- login(){
-  this.submitted=false;
-  console.log('Realiza el Submit');
- }
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.router.navigateByUrl('/home');
+  }
 
 }
