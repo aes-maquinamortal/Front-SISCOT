@@ -1,0 +1,84 @@
+<br><br>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+      <div class="card_login">
+        <div class="card">
+          <div class="card-body text-center">
+           <form [formGroup]="registercompanyForm" (ngSubmit)="registerCompany()">
+              <h1 class="h3 mb-3 font-weight-normal">Empresa</h1>
+                           
+            <div>
+              <p></p>
+          </div>
+              <div class="form-group">
+                 <input type="text" formControlName="nit"  class="form-control" id="nit" placeholder="Nit" [ngClass]="{ 'is-invalid': submitted && f.nit.errors }">
+                   <div *ngIf="submitted && f.nit.errors" class="invalid-feedback" >
+                       <div *ngIf="f.nit.errors.required">Nit es requerido</div>
+                     </div>
+ 
+                 </div>
+
+                 <div class="form-group">
+                   
+                     <input type="text" formControlName="nombreempresa"  class="form-control" id="nombreempresa" placeholder="Nombre Empresa" [ngClass]="{ 'is-invalid': submitted && f.nombreempresa.errors }">
+                     <div *ngIf="submitted && f.nombreempresa.errors" class="invalid-feedback" >
+                         <div *ngIf="f.nombreempresa.errors.required">Apellido es requerido</div>
+                       </div>
+   
+                   </div>
+
+                   <div class="form-group">
+                      <!-- <label for="username">Name:</label>--> 
+     
+                       <input type="text" formControlName="direccion"  class="form-control" id="direccion" placeholder="Dirección Empresa" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }">
+                       <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback" >
+                           <div *ngIf="f.direccion.errors.required">Direccion es requerido</div>
+                         </div>
+     
+                     </div>
+
+                     <div class="form-group">
+                       <input type="text" formControlName="pais"  class="form-control" id="pais" placeholder="Pais" [ngClass]="{ 'is-invalid': submitted && f.pais.errors }">
+                         <div *ngIf="submitted && f.pais.errors" class="invalid-feedback" >
+                             <div *ngIf="f.pais.errors.required">Pais es requerido</div>
+                           </div>
+       
+                       </div>
+
+              <div class="form-group">
+                  <input type="text" formControlName="usermail"  class="form-control" id="usermail" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                  <div *ngIf="submitted && f.usermail.errors" class="invalid-feedback" >
+                      <div *ngIf="f.usermail.errors.required">email es requerido</div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                
+                  <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                  
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password es requerido</div>
+                  </div>
+
+                </div> 
+
+                <div class="form-group">
+                
+                    <label for="servicio">* Consumir Servicio </label>
+                    <a rel="nofollow"  href="login" class="automatic"> WS </a>
+                  </div> 
+
+                
+
+                  <div class="form-group">
+
+                    <button [disabled]="loading" class="btn btn-primary">Registrate</button>
+                  </div>
+                  <a rel="nofollow"  href="login" class="automatic"> Login </a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
