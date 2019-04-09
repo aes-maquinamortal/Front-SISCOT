@@ -6,18 +6,16 @@
           <div class="card-body text-center">
            <form [formGroup]="registerForm" (ngSubmit)="register()">
               <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
-              
-              <div class="funkyradio">
-                  <div class="funkyradio-primary">
-                      <input type="radio" name="radio" id="radio2" />
-                      <label for="radio2">Persona</label>
-                  </div>
-                  <div class="funkyradio-default">
-                      <input type="radio" name="radio" id="radio1"  onClick="window.location='register_company'" />
-                      <label for="radio1">Empresa</label>
-                  </div>
-                  
+              <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="tipo">
+                <label ngbButtonLabel class="btn-primary">
+                  <input ngbButton type="radio" value="EMPRESA"> Empresa
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                  <input ngbButton type="radio" value="PERSONA"> Persona
+                </label>
+          
               </div>
+              
             <div>
               <p></p>
           </div>
