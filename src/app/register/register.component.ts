@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
 
       identificacion: ['', Validators.required],
-      tipo_identificacion:['', Validators.required],
+      tipoIdentificacion:['', []],
       username: ['', Validators.required],
       usuario: ['', Validators.required],
       direccion: ['', Validators.required],
@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    
     this.submitted = true;
     debugger
     if (this.registerForm.invalid) {

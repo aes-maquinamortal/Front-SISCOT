@@ -36,7 +36,7 @@
                     </div>
 
                      <div class="form-group">
-                          <select class="form-control" id="option_select"> <!--[(ngModel)]="option_select" -->
+                          <select class="form-control" id="option_select" formControlName="tipoIdentificacion"> <!--[(ngModel)]="option_select" -->
                             <option value="0">Seleccione Tipo de Identificación</option>
                             <option value="1">TI - Tarjeta de identidad</option>
                             <option value="2">CC - Cédula de ciudadanía</option>
@@ -84,7 +84,7 @@
                    <div class="form-group">
                       <input type="text" formControlName="direccion"  class="form-control" id="direccion" placeholder="Direccion" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
                       <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback" >
-                          <div *ngIf="f.usuario.direccion.required">Usuario es requerido</div>
+                          <div *ngIf="f.direccion.errors.required">Usuario es requerido</div>
                         </div>
     
                     </div>
