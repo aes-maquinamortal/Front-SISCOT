@@ -22,7 +22,8 @@ export class RegisterComponent implements OnInit {
       username: ['', Validators.required],
       apellido: ['', Validators.required],
       usermail: ['', Validators.required],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      tipo: ['',[]]
     });
 
     this.f = this.registerForm.controls;
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.submitted = true;
-
+    debugger
     if (this.registerForm.invalid) {
       return;
     }
