@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   tipoProveedor = 'INTERNO';
+  option_select=0;
   f;
   constructor(
     private formBuilder: FormBuilder,
@@ -20,10 +21,17 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
+
+      identificacion: ['', Validators.required],
+      tipo_identificacion:['', Validators.required],
       username: ['', Validators.required],
-      apellido: ['', Validators.required],
+      usuario: ['', Validators.required],
+      direccion: ['', Validators.required],
       usermail: ['', Validators.required],
       password: ['', [Validators.required]],
+
+      proveedor: ['', [Validators.required]],
+      nit: ['', [Validators.required]],
       tipo: ['',[]]
     });
 

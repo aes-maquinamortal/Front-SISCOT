@@ -4,10 +4,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
+import { GuardaAutenticacionService } from './guarda/guarda-autenticacion.service';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent,canActivate:[GuardaAutenticacionService]},
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent,canActivate:[GuardaAutenticacionService]},
   { path: 'register', component: RegisterComponent },
   { path: 'register_company', component: RegisterCompanyComponent }
 ];
