@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   tipo : string = "PERSONA";
   registerForm: FormGroup;
   submitted = false;
+  tipoProveedor = 'INTERNO';
   f;
   constructor(
     private formBuilder: FormBuilder,

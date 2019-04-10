@@ -13,16 +13,19 @@
                     <input ngbButton type="radio" value="PERSONA"> Persona
                   </label>
             
-                </div> 
+              </div> 
+              <br><br>
+              <div *ngIf="tipo == 'EMPRESA'" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)] = "tipoProveedor">
+                <label ngbButtonLabel class="btn-primary">
+                  <input ngbButton type="radio" value="INTERNO"> Proveedor Interno
+                </label>
+                <label ngbButtonLabel class="btn-primary">
+                  <input ngbButton type="radio" value="EXTERNO"> Proveedor Externo
+                </label>
+          
+            </div> 
            <form [formGroup]="registerForm" (ngSubmit)="register()">
-              
-              
-              
-            <div>
-              <p></p>
-              
-            </div>
-
+            <br><br>
               <div class="form-group">
                 <div *ngIf="tipo === 'PERSONA'">
                     <input type="text" formControlName="username"  class="form-control" id="username" placeholder="Nombre" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
