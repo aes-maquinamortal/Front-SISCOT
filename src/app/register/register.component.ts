@@ -51,7 +51,8 @@ export class RegisterComponent implements OnInit {
 
 
   registerCliente() {
-    const persona = {identificacion: this.registerForm.value.identificacion,
+    const persona = {
+      identificacion: this.registerForm.value.identificacion,
       tipoIdentificacion: this.registerForm.value.tipoIdentificacion,
       nombre: this.registerForm.value.username, usuario: this.registerForm.value.usuario,
       direccion: this.registerForm.value.direccion, password: this.registerForm.value.password,
