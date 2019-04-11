@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   tipoProveedor = 'INTERNO';
-  option_select=0;
+ 
   f;
   constructor(
     private formBuilder: FormBuilder,
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
 
       identificacion: ['', Validators.required],
-      tipoIdentificacion:['', []],
+      tipoIdentificacion:['', Validators.required],
       username: ['', Validators.required],
       usuario: ['', Validators.required],
       direccion: ['', Validators.required],

@@ -29,20 +29,23 @@
               <div class="form-group">
                 <div *ngIf="tipo === 'PERSONA'">
                     <div class="form-group">
-                    <input type="text" formControlName="identificacion"  class="form-control" id="identificacion" placeholder="Identificacion" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <input type="text" formControlName="identificacion"  class="form-control" id="identificacion" placeholder="Identificacion" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors }">
                     <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback" >
                         <div *ngIf="f.identificacion.errors.required">Identificación es requerido</div>
                       </div>
                     </div>
 
                      <div class="form-group">
-                          <select class="form-control" id="option_select" formControlName="tipoIdentificacion"> <!--[(ngModel)]="option_select" -->
-                            <option value="0">Seleccione Tipo de Identificación</option>
+                          <select placeholder="Seleccione tipo de identificacion" class="form-control" id="tipoIdentificacion" formControlName="tipoIdentificacion" [ngClass]="{'is-invalid': submitted && f.tipoIdentificacion.errors }"> 
+                            <option value="">Seleccione Tipo de Identificación</option>
                             <option value="1">TI - Tarjeta de identidad</option>
                             <option value="2">CC - Cédula de ciudadanía</option>
                             <option value="3">CE - Cédula de extranjería</option>
                             <option value="4">PA - Pasaporte </option>
                           </select>
+                            <div *ngIf="submitted && f.tipoIdentificacion.errors" class="invalid-feedback" >
+                              <div *ngIf="f.tipoIdentificacion.errors.required">Tipo de Identificación es requerido</div>
+                            </div>
                      </div>
 
                      
