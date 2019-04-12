@@ -7,15 +7,15 @@
               <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
               <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)] = "tipo">
                   <label ngbButtonLabel class="btn-primary">
-                    <input ngbButton type="radio" value="EMPRESA"> Empresa
+                    <input ngbButton type="radio" value="PROVEEDOR"> Empresa
                   </label>
                   <label ngbButtonLabel class="btn-primary">
-                    <input ngbButton type="radio" value="PERSONA"> Persona
+                    <input ngbButton type="radio" value="CLIENTE"> Persona
                   </label>
             
               </div> 
               <br><br>
-              <div *ngIf="tipo == 'EMPRESA'" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)] = "tipoProveedor">
+              <div *ngIf="tipo == 'PROVEEDOR'" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)] = "tipoProveedor">
                 <label ngbButtonLabel class="btn-primary">
                   <input ngbButton type="radio" value="INTERNO"> Proveedor Interno
                 </label>
@@ -27,7 +27,7 @@
            <form [formGroup]="registerForm" (ngSubmit)="register()">
             <br><br>
               <div class="form-group">
-                <div *ngIf="tipo === 'PERSONA'">
+                <div *ngIf="tipo === 'CLIENTE'">
                     <div class="form-group">
                     <input type="text" formControlName="identificacion"  class="form-control" id="identificacion" placeholder="Identificacion" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors }">
                     <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback" >
@@ -37,7 +37,6 @@
 
                      <div class="form-group">
                           <select placeholder="Seleccione tipo de identificacion" class="form-control" id="tipoIdentificacion" formControlName="tipoIdentificacion" [ngClass]="{'is-invalid': submitted && f.tipoIdentificacion.errors }"> 
-                            <option value="">Seleccione Tipo de Identificación</option>
                             <option value="TI">TI - Tarjeta de identidad</option>
                             <option value="CC">CC - Cédula de ciudadanía</option>
                             <option value="CE">CE - Cédula de extranjería</option>
@@ -51,18 +50,12 @@
                      
   
                 </div>
-                <div *ngIf="tipo === 'EMPRESA'">
+                <div *ngIf="tipo === 'PROVEEDOR'">
+                    
                     <div class="form-group">
-                        <input type="text" formControlName="proveedor"  class="form-control" id="proveedor" placeholder="Proveedor" [ngClass]="{ 'is-invalid': submitted && f.proveedor.errors }">
-                        <div *ngIf="submitted && f.proveedor.errors" class="invalid-feedback" >
-                        <div *ngIf="f.proveedor.errors.required">Proveedor es requerido</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" formControlName="nit"  class="form-control" id="nit" placeholder="Nit" [ngClass]="{ 'is-invalid': submitted && f.nit.errors }">
-                        <div *ngIf="submitted && f.nit.errors" class="invalid-feedback" >
-                        <div *ngIf="f.nit.errors.required">Nit es requerido</div>
+                        <input type="text" formControlName="identificacion"  class="form-control" id="identificacion" placeholder="Nit" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors }">
+                        <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback" >
+                        <div *ngIf="f.identificacion.errors.required">Nit es requerido</div>
                         </div>
                     </div>
 
@@ -70,24 +63,18 @@
                   </div>
 
                   <div class="form-group">
-                      <input type="text" formControlName="username"  class="form-control" id="username" placeholder="Nombre" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                      <input type="text" formControlName="username"  class="form-control" id="username" placeholder="Proveedor" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                       <div *ngIf="submitted && f.username.errors" class="invalid-feedback" >
                       <div *ngIf="f.username.errors.required">Nombre es requerido</div>
                       </div>
                   </div>
 
-                 <div class="form-group">
-                     <input type="text" formControlName="usuario"  class="form-control" id="usuario" placeholder="Usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
-                     <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback" >
-                         <div *ngIf="f.usuario.errors.required">Usuario es requerido</div>
-                       </div>
-   
-                   </div>
+                 
 
                    <div class="form-group">
-                      <input type="text" formControlName="direccion"  class="form-control" id="direccion" placeholder="Direccion" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
+                      <input type="text" formControlName="direccion"  class="form-control" id="direccion" placeholder="Direccion" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }">
                       <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback" >
-                          <div *ngIf="f.direccion.errors.required">Usuario es requerido</div>
+                          <div *ngIf="f.direccion.errors.required">Direccion es requerido</div>
                         </div>
     
                     </div>
@@ -100,6 +87,13 @@
                     </div>
 
                 </div>
+
+                <div class="form-group">
+                  <input type="text" formControlName="usuario"  class="form-control" id="usuario" placeholder="Usuario" [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }">
+                  <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback" >
+                      <div *ngIf="f.usuario.errors.required">Usuario es requerido</div>
+                    </div>
+                   </div>
 
                 <div class="form-group">
                 

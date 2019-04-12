@@ -9,11 +9,10 @@ import { RegistroServicioService } from '../servicios/registro/registro-servicio
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  tipo : string = "PERSONA";
+  tipo: string = "CLIENTE";
   registerForm: FormGroup;
   submitted = false;
   tipoProveedor = 'INTERNO';
- 
   f;
   constructor(
     private formBuilder: FormBuilder,
@@ -25,28 +24,42 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
 
       identificacion: ['', Validators.required],
-      tipoIdentificacion:['', Validators.required],
+
+      tipoIdentificacion: ['CC', []],
       username: ['', Validators.required],
-      usuario: ['', Validators.required],
+      usuario:['', Validators.required],
       direccion: ['', Validators.required],
       usermail: ['', Validators.required],
-      password: ['', [Validators.required]],
-
-      proveedor: ['', []],
-      nit: ['', []],
-      tipo: ['',[]]
+      password: ['', Validators.required],
+      tipo: ['', []]
     });
 
     this.f = this.registerForm.controls;
   }
 
-  register(){
-    this.tipo === "PERSONA" ? this.registerCliente() : this.registerProveedor();
+  register() {
+    this.tipo === "CLIENTE" ? this.registerCliente() : this.registerProveedor();
   }
 
-  registerProveedor(){
-
-
+  registerProveedor() {
+    const proveedor = {
+      identificacion: this.registerForm.value.identificacion,
+      nombre: this.registerForm.value.username,
+      usuario: this.registerForm.value.usuario,
+      direccion: this.registerForm.value.direccion,
+      password: this.registerForm.value.password,
+      email: this.registerForm.value.usermail,
+      tipo: this.tipo+"_"+this.tipoProveedor
+    };
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
+    this.service.registroProveedor(proveedor).subscribe(
+      res => {
+        alert("Registro exitoso proveedor");
+        this.router.navigateByUrl('/login');
+      })
   }
 
 
@@ -54,9 +67,13 @@ export class RegisterComponent implements OnInit {
     const persona = {
       identificacion: this.registerForm.value.identificacion,
       tipoIdentificacion: this.registerForm.value.tipoIdentificacion,
-      nombre: this.registerForm.value.username, usuario: this.registerForm.value.usuario,
-      direccion: this.registerForm.value.direccion, password: this.registerForm.value.password,
-      correo: this.registerForm.value.usermail, tipo: this.tipo};
+      nombre: this.registerForm.value.username,
+      usuario: this.registerForm.value.usuario,
+      direccion: this.registerForm.value.direccion,
+      password: this.registerForm.value.password,
+      correo: this.registerForm.value.usermail,
+      tipo: this.tipo
+    };
     this.submitted = true;
     if (this.registerForm.invalid) {
       return;
@@ -64,10 +81,10 @@ export class RegisterComponent implements OnInit {
 
     this.service.registroPersona(persona).subscribe(
       res => {
-        alert("Registro exitoso");
+        alert("Registro exitoso persona");
         this.router.navigateByUrl('/login');
       }
     )
-    
+
   }
 }

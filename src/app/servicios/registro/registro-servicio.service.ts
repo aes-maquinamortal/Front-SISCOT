@@ -12,28 +12,42 @@ export class RegistroServicioService {
   }
 
   registroPersona(persona) {
-    debugger
+
     const mutation = `mutation {
       registerClient(clienteInput: {
         identificacion: "${persona.identificacion}",
         tipo_identificacion: "${persona.tipoIdentificacion}",
         nombre: "${persona.nombre}",
-        usuario: "${persona.usuario}",
         direccion:"${persona.direccion}"
       }, usuarioInput: {
         usuario: "${persona.usuario}",
         password: "${persona.password}",
-        correo: "${persona.email}",
+        correo: "${persona.correo}",
         tipo: "${persona.tipo}"
       }){
         identificacion
       }
     }`;
+    
     return this.http.post(this.url, {query: mutation});
   }
 
-  registroProveedor() {
-    
+  registroProveedor(proveedor) {
+   const mutation = `mutation {
+      registerSupplier(proveedorInput: {
+        nit: "${proveedor.identificacion}",
+        nombre: "${proveedor.nombre}",
+        direccion:"${proveedor.direccion}"
+      }, usuarioInput: {
+        usuario: "${proveedor.usuario}",
+        password: "${proveedor.password}",
+        correo: "${proveedor.email}",
+        tipo: "${proveedor.tipo}"
+      }){
+        nit
+      }
+    }`
+    return this.http.post(this.url, {query: mutation});
   }
 
 
