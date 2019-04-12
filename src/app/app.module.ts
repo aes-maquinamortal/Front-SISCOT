@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductoComponent } from './producto/producto.component';
+import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    ProductoComponent,
+    ListaProductosComponent
   ],
   imports: [
     BrowserModule,
