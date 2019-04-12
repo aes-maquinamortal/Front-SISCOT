@@ -12,8 +12,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'register', component: RegisterComponent },
-  { path: 'register_company', component: RegisterCompanyComponent },
-  { path: 'productos', component: ListaProductosComponent, canActivate: [GuardaAutenticacionService] }
+  { path: 'register_company', component: RegisterCompanyComponent }
 ];
 
 @NgModule({
