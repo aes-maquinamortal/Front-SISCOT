@@ -1,3 +1,4 @@
+import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -7,11 +8,12 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
 import { GuardaAutenticacionService } from './guarda/guarda-autenticacion.service';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent,canActivate:[GuardaAutenticacionService]},
+  { path: '', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent,canActivate:[GuardaAutenticacionService]},
+  { path: 'home', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'register', component: RegisterComponent },
-  { path: 'register_company', component: RegisterCompanyComponent }
+  { path: 'register_company', component: RegisterCompanyComponent },
+  { path: 'productos', component: ListaProductosComponent, canActivate: [GuardaAutenticacionService] }
 ];
 
 @NgModule({

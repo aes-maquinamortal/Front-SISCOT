@@ -12,7 +12,6 @@ export class RegistroServicioService {
   }
 
   registroPersona(persona) {
-    debugger
     const mutation = `mutation {
       registerClient(clienteInput: {
         identificacion: "${persona.identificacion}",
