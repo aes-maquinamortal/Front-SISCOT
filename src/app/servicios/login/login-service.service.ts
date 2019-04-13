@@ -1,17 +1,16 @@
-import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  url = environment.url;
-  constructor(private http: HttpClient) { }
+  constructor(private apollo: Apollo) { }
 
   login(usuario,contrasena) : Observable<any>{
-    const queryGraph = `query{
+    const queryGraph = gql`query{
       login(
         usuario:"${usuario}",
         password:"${contrasena}"
@@ -19,6 +18,6 @@ export class LoginService {
         usuario,token
       }
     }`;
-    return this.http.post(this.url, {query: queryGraph});
+    return this.apollo.query({ query: queryGraph });
   }
 }

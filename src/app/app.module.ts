@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductoComponent } from './producto/producto.component';
 import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 
+import { GraphQLConfigModule } from './subscriptions-graphql/graphql.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { ListaProductosComponent } from './lista-productos/lista-productos.compo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    GraphQLConfigModule
   ],
   providers: [],
   bootstrap: [AppComponent]

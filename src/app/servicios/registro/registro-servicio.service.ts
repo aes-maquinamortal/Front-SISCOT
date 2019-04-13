@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroServicioService {
-  url = environment.url;
-  constructor(private http: HttpClient) { 
-
-  }
+  constructor(private apollo: Apollo) { }
 
   registroPersona(persona) {
-    const mutation = `mutation {
+    const mutation = gql`mutation {
       registerClient(clienteInput: {
         identificacion: "${persona.identificacion}",
         tipo_identificacion: "${persona.tipoIdentificacion}",
@@ -28,7 +25,7 @@ export class RegistroServicioService {
       }
     }`;
     
-    return this.http.post(this.url, {query: mutation});
+    return this.apollo.mutate({ mutation });
   }
 
   registroProveedor(proveedor) {
@@ -46,7 +43,7 @@ export class RegistroServicioService {
         nit
       }
     }`
-    return this.http.post(this.url, {query: mutation});
+    return this.apollo.mutate({ mutation });
   }
 
 
