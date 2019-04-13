@@ -29,7 +29,7 @@ export class RegistroServicioService {
   }
 
   registroProveedor(proveedor) {
-   const mutation = `mutation {
+   const mutation = gql`mutation {
       registerSupplier(proveedorInput: {
         nit: "${proveedor.identificacion}",
         nombre: "${proveedor.nombre}",
