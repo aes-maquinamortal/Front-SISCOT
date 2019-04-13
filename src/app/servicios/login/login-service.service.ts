@@ -15,7 +15,7 @@ export class LoginService {
         usuario:"${usuario}",
         password:"${contrasena}"
       ){
-        usuario,token
+        id, token, userType
       }
     }`;
     return this.apollo.query({ query: queryGraph });
