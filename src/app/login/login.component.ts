@@ -33,12 +33,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    sessionStorage.setItem('token', "TOK");
-    // this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
-    //   .subscribe(res => {
-    //     sessionStorage.setItem('token', res.data.login.token);
-    //     this.router.navigateByUrl('/home');
-    //   });
+    
+    this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
+      .subscribe(res => {
+        sessionStorage.setItem('token', res.data.login.token);
+        this.router.navigateByUrl('/home');
+      });
   }
 
 }
