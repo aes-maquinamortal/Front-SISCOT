@@ -3,6 +3,6 @@
   <div class="card-body">
     <h4 class="card-title">{{nombre}}</h4>
     <p class="card-text">{{descripcion}}</p>
-    <a href="#" class="btn btn-primary">Agregar al carrito</a>
+    <button class="btn btn-primary" (click)="agregarAlCarrito()" [disabled]="disabled">Agregar al Carrito</button>
   </div>
 </div>

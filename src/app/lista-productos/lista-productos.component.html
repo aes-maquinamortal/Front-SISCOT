@@ -5,7 +5,7 @@
         <div *ngFor="let item of lista">
           <div class="col-md-1"></div>
           <div class="col-md-2">
-            <app-producto [nombre]="item.nombre" [descripcion]="item.descripcion"></app-producto>
+            <app-producto [nombre]="item.nombre" [descripcion]="item.descripcion" [id]="item.id" (idQuitar)="quitarProducto($event)"></app-producto>
             <br><br>
           </div>
           <div class="col-md-1"></div>
