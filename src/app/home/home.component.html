@@ -1,38 +1,35 @@
 <app-main></app-main>
-  <div align='center'>
-    <h1>Lista de Productos</h1>
+<div align='center'>
+  <h1>Lista de Productos</h1>
+</div>
+
+<div *ngIf="isCliente()" class="container">
+  <div class="row">
+    <!-- Elementos generados a partir del JSON -->
+    <main id="items" class="col-sm-8 row"></main>
+    <!-- Carrito -->
+
+    <aside class="col-sm-4">
+      <img class="" src="../../assets/images/carrito.png" alt="image"
+        style="width: 60px; height: 60px; align-self: right">
+      <!-- Elementos del carrito -->
+      <ul id="carro_compras" class="list-group">
+        <div *ngFor="let item of ArrayCarrito">
+          {{item.nombre}}
+
+        </div>
+      </ul>
+      <hr>
+      Total:
+      <!-- Precio total -->
+      <p class="text-right">
+        <span id="total"> </span>
+
+        <button class="btn btn-sm btn-danger" [disabled]="disabled">Finalizar Pedido</button>
+      </p>
+    </aside>
+
   </div>
- 
-  <div class="container">
-      <div class="row">
-          <!-- Elementos generados a partir del JSON -->
-          <main id="items" class="col-sm-8 row"></main>
-          <!-- Carrito -->
+</div>
 
-          <aside class="col-sm-4">
-              <img class="" src="../../assets/images/carrito.png" alt="image" style="width: 60px; height: 60px; align-self: right">
-              <!-- Elementos del carrito -->
-              <ul id="carro_compras" class="list-group"> 
-                  <div *ngFor="let item of ArrayCarrito">
-                  {{item.nombre}}
-
-                  </div> 
-              </ul>
-              <hr>
-              Total:
-              <!-- Precio total -->
-              <p class="text-right"> 
-                <span id="total"> </span> 
-                 
-                <button class="btn btn-sm btn-danger"  [disabled]="disabled">Finalizar Pedido</button>    
-              </p>
-          </aside>
-          
-      </div>
-  </div>
-  
-
-  <p></p>
-  <p></p>
-<app-lista-productos (itemAdicionarLista)="comprarProducto($event)" >  </app-lista-productos>
-
+<app-lista-productos (itemAdicionarLista)="comprarProducto($event)"> </app-lista-productos>

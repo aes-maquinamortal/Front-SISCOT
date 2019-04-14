@@ -32,6 +32,10 @@ export class HomeComponent implements OnInit {
 
   }
 
+  isCliente() {
+    return sessionStorage.getItem('userType') === 'CLIENTE'
+  }
+
 
 }
 

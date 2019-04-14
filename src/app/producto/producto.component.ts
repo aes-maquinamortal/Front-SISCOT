@@ -31,6 +31,10 @@ export class ProductoComponent implements OnInit {
     
   }
 
+  isCliente() {
+    return sessionStorage.getItem('userType') === 'CLIENTE';
+  }
+
   calcularTotal(){
 
     const total = 0;

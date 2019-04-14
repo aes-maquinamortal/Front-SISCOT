@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   f;
+  errorMessage: string = "";
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -29,11 +30,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.submitted = true;
+    this.errorMessage = '';
 
     if (this.loginForm.invalid) {
       return;
     }
-    
+
     this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(res => {
         if (res.data.login) {
@@ -41,6 +43,8 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('id', res.data.login.id);
           sessionStorage.setItem('userType', res.data.login.userType);
           this.router.navigateByUrl('/home');
+        } else {
+          this.errorMessage = res.errors[0].message
         }
       });
   }

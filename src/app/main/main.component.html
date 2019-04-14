@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-light">
-
-    <!-- Links -->
-    <ul class="navbar-nav">
+<nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item">
-        <a class="nav-link" href="/home" style="color:antiquewhite">Lista de Productos</a>
+        <a class="nav-link" href="/home">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/register-producto" style="color:antiquewhite">Crear Producto</a>
+        <a class="nav-link" href="#">Carrito de compras</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" style="color:antiquewhite">Carrito de compras</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" style="color:antiquewhite">Cerrar sesión</a>
+      <li *ngIf="isProveedorInterno()" class="nav-item">
+        <a class="nav-link" href="/register-producto">Crear Producto</a>
       </li>
     </ul>
-  
-  </nav>  
-  <br>
+    <li class="navbar-brand">
+      <a class="nav-link" style="color:rgba(255,255,255,.75); font-size: 1rem;" href="/login" (click)="signOut()">Cerrar
+        sesión</a>
+    </li>
+  </div>
+</nav>
+<br>
