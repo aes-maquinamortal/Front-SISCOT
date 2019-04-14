@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  @Input() id: number
+  @Input() nombre: string;
 
+  constructor() { }
+  ArrayCarrito = []
   ngOnInit() {
+
+    
   }
 
+  comprarProducto(item) {
+    
+    this.ArrayCarrito.push(item);
+  }
+
+  quitarProductohome(item) {
+    this.ArrayCarrito.slice(item);
+  }
+
+  calcularTotal(){
+    var total=0;
+    
+
+  }
+
+
 }
+
+

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { timer } from 'rxjs';
+
 
 @Component({
   selector: 'app-lista-productos',
@@ -11,6 +12,8 @@ export class ListaProductosComponent implements OnInit {
   constructor() { }
 
   lista = []
+  
+  @Output() itemAdicionarLista: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit() {
     for (let index = 0; index < 17; index++) {
@@ -22,11 +25,23 @@ export class ListaProductosComponent implements OnInit {
   }
 
   quitarProducto($event) {
-    debugger
+    
     const quitar = this.lista.findIndex(f => f.id == $event);
     timer(2000).subscribe(() => {
+      // borrar la posicion
       this.lista.splice(quitar, 1);
     });
   }
+
+  adicionarproducto($event){
+  
+    const add = this.lista.findIndex(f => f.id == $event);
+    timer(2000).subscribe(() => {
+    
+    this.itemAdicionarLista.emit(this.lista[add]);
+    this.lista.splice(add, 1);
+  });
+
+}
 
 }
