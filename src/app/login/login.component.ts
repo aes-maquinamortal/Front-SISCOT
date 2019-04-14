@@ -36,8 +36,12 @@ export class LoginComponent implements OnInit {
     
     this.loginService.login(this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(res => {
-        sessionStorage.setItem('token', res.data.login.token);
-        this.router.navigateByUrl('/home');
+        if (res.data.login) {
+          sessionStorage.setItem('token', res.data.login.token);
+          sessionStorage.setItem('id', res.data.login.id);
+          sessionStorage.setItem('userType', res.data.login.userType);
+          this.router.navigateByUrl('/home');
+        }
       });
   }
 

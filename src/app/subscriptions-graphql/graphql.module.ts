@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
@@ -18,7 +18,8 @@ import { environment } from './../../environments/environment';
 export class GraphQLConfigModule {
     constructor(apollo: Apollo, private httpClient: HttpClient) {
         const httpLink = new HttpLink(httpClient).create({
-            uri: environment.url
+            uri: environment.url,
+            headers: new HttpHeaders().set("Authorization", `Bearer ${sessionStorage.getItem('token')}`)
         });
 
         const subscriptionLink = new WebSocketLink({

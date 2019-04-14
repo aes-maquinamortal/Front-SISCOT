@@ -1,0 +1,48 @@
+<app-main></app-main>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4 mx-auto">
+    <div class="card_login">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1 class="h3 mb-3 font-weight-normal">Registro Producto</h1>
+          <br><br>
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-group">
+              <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                placeholder="Nombre del Producto" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+              <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" formControlName="referencia" class="form-control" id="referencia"
+                placeholder="Referencia" [ngClass]="{ 'is-invalid': submitted && f.referencia.errors }">
+              <div *ngIf="submitted && f.referencia.errors" class="invalid-feedback">
+                <div *ngIf="f.referencia.errors.required">La referencia es requerido</div>
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <input type="text" formControlName="url" class="form-control" id="url" placeholder="URL"
+                [ngClass]="{ 'is-invalid': submitted && f.url.errors }"
+                (change)="tipo = f.url.value">
+              <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
+                <div *ngIf="f.url.errors.required">La URL es requerido</div>
+              </div>
+            </div>
+
+            <img src="{{tipo}}" class="img-rounded" style="width: 150px; height: 150px; align-self: center">
+            <br><br>
+
+            <div class="form-group">
+              <button [disabled]="loading" class="btn btn-primary">Registrate Producto</button>
+            </div>
+          </form> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

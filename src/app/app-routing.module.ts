@@ -1,3 +1,4 @@
+import { RegisterProductoComponent } from './register-producto/register-producto.component';
 import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'register', component: RegisterComponent },
+  { path: 'register-producto', component: RegisterProductoComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'register_company', component: RegisterCompanyComponent }
 ];
 

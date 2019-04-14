@@ -13,6 +13,8 @@ import { ProductoComponent } from './producto/producto.component';
 import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 
 import { GraphQLConfigModule } from './subscriptions-graphql/graphql.module';
+import { RegisterProductoComponent } from './register-producto/register-producto.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { GraphQLConfigModule } from './subscriptions-graphql/graphql.module';
     RegisterComponent,
     RegisterCompanyComponent,
     ProductoComponent,
-    ListaProductosComponent
+    ListaProductosComponent,
+    RegisterProductoComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
