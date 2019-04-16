@@ -11,19 +11,20 @@ export class HomeComponent implements OnInit {
   @Input() nombre: string;
 
   constructor() { }
-  ArrayCarrito = []
+  arrayCarrito = []
   ngOnInit() {
-
+    this.arrayCarrito = Object.assign([],JSON.parse(sessionStorage.getItem("carrito")))
+    
     
   }
 
   comprarProducto(item) {
     
-    this.ArrayCarrito.push(item);
+    this.arrayCarrito.push(item);
   }
 
   quitarProductohome(item) {
-    this.ArrayCarrito.slice(item);
+    this.arrayCarrito.slice(item);
   }
 
   calcularTotal(){
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   isCliente() {
-    return sessionStorage.getItem('userType') === 'CLIENTE'
+    return sessionStorage.getItem('userType') === 'CLIENTE';
   }
 
 

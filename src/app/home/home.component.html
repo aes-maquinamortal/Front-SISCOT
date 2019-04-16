@@ -14,8 +14,9 @@
         style="width: 60px; height: 60px; align-self: right">
       <!-- Elementos del carrito -->
       <ul id="carro_compras" class="list-group">
-        <div *ngFor="let item of ArrayCarrito">
+        <div *ngFor="let item of arrayCarrito">
           {{item.nombre}}
+          <input type="text" class="form-control" id="usr">
 
         </div>
       </ul>
