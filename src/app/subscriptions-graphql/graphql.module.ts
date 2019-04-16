@@ -3,6 +3,7 @@ import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { ApolloLink, concat } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { split } from 'apollo-link';
 import { DefaultOptions } from 'apollo-client';
@@ -18,8 +19,7 @@ import { environment } from './../../environments/environment';
 export class GraphQLConfigModule {
     constructor(apollo: Apollo, private httpClient: HttpClient) {
         const httpLink = new HttpLink(httpClient).create({
-            uri: environment.url,
-            headers: new HttpHeaders().set("Authorization", `Bearer ${sessionStorage.getItem('token')}`)
+            uri: environment.url
         });
 
         const subscriptionLink = new WebSocketLink({
@@ -52,8 +52,20 @@ export class GraphQLConfigModule {
             },
         }
 
+        const authMiddleware = new ApolloLink((operation, forward) => {
+            if(sessionStorage.getItem('token')){
+                operation.setContext({
+                    headers: {
+                        authorization: `Bearer ${sessionStorage.getItem('token')}`
+                    }
+                });
+            }
+
+            return forward(operation);
+        })
+
         apollo.create({
-            link,
+            link: concat(authMiddleware, link),
             cache: new InMemoryCache(),
             defaultOptions: defaultOptions
         });
