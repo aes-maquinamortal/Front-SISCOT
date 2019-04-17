@@ -33,8 +33,4 @@ export class CarroComprasComponent implements OnInit {
     var total=0;
   }
 
-  isCliente() {
-    return sessionStorage.getItem('userType') === 'CLIENTE'
-  }
-
 }

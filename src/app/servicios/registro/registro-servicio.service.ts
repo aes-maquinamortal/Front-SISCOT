@@ -11,7 +11,7 @@ export class RegistroServicioService {
   registroPersona(persona) {
     const mutation = gql`mutation {
       registerClient(clienteInput: {
-        identificacion: "${persona.identificacion}",
+        identificacion: ${persona.identificacion},
         tipo_identificacion: "${persona.tipoIdentificacion}",
         nombre: "${persona.nombre}",
         direccion:"${persona.direccion}"
@@ -31,7 +31,7 @@ export class RegistroServicioService {
   registroProveedor(proveedor) {
    const mutation = gql`mutation {
       registerSupplier(proveedorInput: {
-        nit: "${proveedor.identificacion}",
+        nit: ${proveedor.identificacion},
         nombre: "${proveedor.nombre}",
         direccion:"${proveedor.direccion}"
       }, usuarioInput: {

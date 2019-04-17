@@ -1,0 +1,54 @@
+<app-main></app-main>
+<div align='center'>
+  <h1>Propuesta</h1>
+  <h2 *ngIf="propuestaId !== null">Estado: {{estado}}</h2>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th style="text-align: center" scope="col">Referencia</th>
+          <th style="text-align: center" scope="col">Nombre</th>
+          <th style="text-align: center" scope="col">Cantidad</th>
+          <th style="text-align: center" scope="col">Valor unitario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos; let i = index">
+          <th scope="row">{{producto.referencia}}</th>
+          <td>{{producto.nombre}}</td>
+          <td style="text-align: center">{{producto.cantidad}}</td>
+          <td>
+            <input type="number" class="form-control" id="value" [(ngModel)]="producto.valor_unitario"
+              (change)="updateTotal()" min="0" [disabled]="propuestaId !== null">
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <td>
+            <h3 style="text-align: end">Total: ${{total}}</h3>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+          <th><strong>Descuento: %</strong></th>
+          <td>
+            <input type="number" min="0" max="100" class="form-control" [(ngModel)]="descuento" (change)="updateTotal()"
+              [disabled]="propuestaId !== null">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="text-align: end">Total con descuento: ${{totalDescuento}}</h3>
+    <br>
+    <button *ngIf="propuestaId === null" style="float:right" class="btn btn-sm btn-warning"
+      (click)="sendPropuesta()">Enviar propuesta</button>
+  </div>
+</div>

@@ -18,6 +18,8 @@ import { RegisterProductoComponent } from './register-producto/register-producto
 import { MainComponent } from './main/main.component';
 import { DashboardsComponent } from './dashboards/dashboards.component';
 import { CarroComprasComponent } from './carro-compras/carro-compras.component';
+import { ListaCotizacionesComponent } from './lista-cotizaciones/lista-cotizaciones.component';
+import { PropuestaComponent } from './propuesta/propuesta.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { CarroComprasComponent } from './carro-compras/carro-compras.component';
     RegisterProductoComponent,
     MainComponent,
     DashboardsComponent,
-    CarroComprasComponent
+    CarroComprasComponent,
+    ListaCotizacionesComponent,
+    PropuestaComponent
   ],
   imports: [
     BrowserModule,

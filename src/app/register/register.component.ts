@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   registerProveedor() {
     const proveedor = {
-      identificacion: this.registerForm.value.identificacion,
+      identificacion: +this.registerForm.value.identificacion,
       nombre: this.registerForm.value.username,
       usuario: this.registerForm.value.usuario,
       direccion: this.registerForm.value.direccion,
@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
 
   registerCliente() {
     const persona = {
-      identificacion: this.registerForm.value.identificacion,
+      identificacion: +this.registerForm.value.identificacion,
       tipoIdentificacion: this.registerForm.value.tipoIdentificacion,
       nombre: this.registerForm.value.username,
       usuario: this.registerForm.value.usuario,

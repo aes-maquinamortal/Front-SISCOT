@@ -1,5 +1,4 @@
 import { RegisterProductoComponent } from './register-producto/register-producto.component';
-import { ListaProductosComponent } from './lista-productos/lista-productos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import { GuardaAutenticacionService } from './guarda/guarda-autenticacion.service';
 import { CarroComprasComponent } from './carro-compras/carro-compras.component';
+import { ListaCotizacionesComponent } from './lista-cotizaciones/lista-cotizaciones.component';
+import { PropuestaComponent } from './propuesta/propuesta.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
@@ -15,8 +16,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'register', component: RegisterComponent },
   { path: 'register-producto', component: RegisterProductoComponent, canActivate: [GuardaAutenticacionService]},
-  { path: 'carro-compras', component: CarroComprasComponent},
-  { path: 'register_company', component: RegisterCompanyComponent }
+  { path: 'carro-compras', component: CarroComprasComponent, canActivate: [GuardaAutenticacionService]},
+  { path: 'register_company', component: RegisterCompanyComponent },
+  { path: 'cotizaciones', component: ListaCotizacionesComponent, canActivate: [GuardaAutenticacionService]},
+  { path: 'propuesta/:cotizacionId', component: PropuestaComponent, canActivate: [GuardaAutenticacionService]}
 ];
 
 @NgModule({
