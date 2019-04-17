@@ -17,19 +17,20 @@ export class ListaProductosComponent implements OnInit {
   @Output() itemAdicionarLista: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit() {
-    /*for (let index = 0; index < 17; index++) {
-      const id = index;
-      const nombre = "nombre" + index;
-      const descripcion = "descripcion" + index;
-      this.lista.push({ id: id, nombre: nombre, descripcion: descripcion })
-    }*/
-    
+   let id_producto_carro=[]
+
+
     if (sessionStorage.getItem("userType") === "CLIENTE"){
-      let carrito = JSON.stringify([]);
+      let carrito = []
       if(sessionStorage.getItem("carrito")){
         carrito = JSON.parse(sessionStorage.getItem("carrito"));
       }
-      this.listaProductosService.productosCliente(carrito).subscribe(
+      carrito.forEach(element => {
+        id_producto_carro.push(+element.id);
+        
+      });
+
+      this.listaProductosService.productosCliente(JSON.stringify(id_producto_carro)).subscribe(
         res => {
           if (res.data) {
             this.lista = Object.assign([], res.data.products);

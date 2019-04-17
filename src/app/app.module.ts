@@ -17,6 +17,7 @@ import { GraphQLConfigModule } from './subscriptions-graphql/graphql.module';
 import { RegisterProductoComponent } from './register-producto/register-producto.component';
 import { MainComponent } from './main/main.component';
 import { DashboardsComponent } from './dashboards/dashboards.component';
+import { CarroComprasComponent } from './carro-compras/carro-compras.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DashboardsComponent } from './dashboards/dashboards.component';
     ListaProductosComponent,
     RegisterProductoComponent,
     MainComponent,
-    DashboardsComponent
+    DashboardsComponent,
+    CarroComprasComponent
   ],
   imports: [
     BrowserModule,

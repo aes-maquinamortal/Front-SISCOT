@@ -14,26 +14,9 @@ export class HomeComponent implements OnInit {
   arrayCarrito = []
   ngOnInit() {
     this.arrayCarrito = Object.assign([],JSON.parse(sessionStorage.getItem("carrito")))
-    
-    
   }
 
-  comprarProducto(item) {
-    
-    this.arrayCarrito.push(item);
-  }
-
-  quitarProductohome(item) {
-    this.arrayCarrito.slice(item);
-  }
-
-  calcularTotal(){
-    var total=0;
-    
-
-  }
-
-  isCliente() {
+    isCliente() {
     return sessionStorage.getItem('userType') === 'CLIENTE';
   }
 

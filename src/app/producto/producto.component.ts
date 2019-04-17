@@ -24,7 +24,12 @@ export class ProductoComponent implements OnInit {
     if (sessionStorage.getItem("carrito")) {
       carrito = JSON.parse(sessionStorage.getItem("carrito"));
     }
-    carrito.push(this.id);
+    carrito.push({
+      id: this.id,
+      nombre: this.nombre,
+      descripcion: this.descripcion,
+          
+    });
     sessionStorage.setItem("carrito", JSON.stringify(carrito));
     this.disabled = true;
     this.idAdicionar.emit(this.id)
