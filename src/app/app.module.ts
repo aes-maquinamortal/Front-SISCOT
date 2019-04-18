@@ -20,6 +20,7 @@ import { DashboardsComponent } from './dashboards/dashboards.component';
 import { CarroComprasComponent } from './carro-compras/carro-compras.component';
 import { ListaCotizacionesComponent } from './lista-cotizaciones/lista-cotizaciones.component';
 import { PropuestaComponent } from './propuesta/propuesta.component';
+import { CotizacionClienteComponent } from './cotizacion-cliente/cotizacion-cliente.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PropuestaComponent } from './propuesta/propuesta.component';
     DashboardsComponent,
     CarroComprasComponent,
     ListaCotizacionesComponent,
-    PropuestaComponent
+    PropuestaComponent,
+    CotizacionClienteComponent
   ],
   imports: [
     BrowserModule,

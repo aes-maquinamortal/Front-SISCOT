@@ -53,4 +53,22 @@ export class CotizacionService {
     `
     return this.apollo.mutate({ mutation });
   }
+
+
+  public crearCotizacion(productos){
+    debugger
+    const mutation = gql`mutation {
+    registerCotizacion(
+      cotizacionProductoInput:${Util.toGraphQlList(productos)}
+    ) {
+      id
+    }
+   }
+    `
+    debugger
+    return this.apollo.mutate({ mutation });
+  
+  }
+
+  
 }
