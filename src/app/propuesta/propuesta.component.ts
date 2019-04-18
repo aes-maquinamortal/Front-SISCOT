@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CotizacionService } from '../servicios/cotizacion/cotizacion.service';
 
@@ -9,13 +9,18 @@ import { CotizacionService } from '../servicios/cotizacion/cotizacion.service';
 })
 export class PropuestaComponent implements OnInit {
 
-  cotizacionId: number = null;
+  @Input() cotizacionId;
+  @Input() productosInput;
+  @Input() proveedor;
+  @Input() propuestaIdInput;
+  @Input() descuentoInput;
   productos = [];
   total = 0;
   totalDescuento = 0;
   descuento = 0;
   propuestaId = null;
   estado = 'PENDIENTE';
+  tipoUsuario = sessionStorage.getItem('userType');
 
   constructor(
     private route: ActivatedRoute,
@@ -24,27 +29,25 @@ export class PropuestaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.params.subscribe( params => {
-      this.cotizacionId = +params['cotizacionId'];
+    if (this.tipoUsuario == 'PROVEEDOR_INTERNO') {
       this.cotizacionService.getCotizacionPropuesta(this.cotizacionId)
-        .subscribe( (res: any) => {
+        .subscribe((res: any) => {
           let productos = res.data.cotizacion.productos;
-          if(res.data.propuesta) {
+          if (res.data.propuesta) {
             productos = res.data.propuesta.productos;
-            this.propuestaId = res.data.propuesta.id
+            this.propuestaId = res.data.propuesta.id;
             this.totalDescuento = res.data.propuesta.total;
             this.descuento = res.data.propuesta.descuento;
           }
+          this.productos = this.adecuarProductos(productos);
+        });
+    } else {
+      this.productos = this.adecuarProductos(this.productosInput);
+      this.propuestaId = this.propuestaIdInput;
+      this.descuento = this.descuentoInput;
+      this.updateTotal();
+    }
 
-          productos.forEach(producto => {
-            if(!producto.valor_unitario)
-              producto.valor_unitario = 0;
-            this.total += (producto.valor_unitario * producto.cantidad)
-          })
-
-          this.productos = productos;
-        })
-    });
   }
 
   sendPropuesta() {
@@ -55,7 +58,7 @@ export class PropuestaComponent implements OnInit {
     }
 
     let productos = []
-    this.productos.forEach( producto => {
+    this.productos.forEach(producto => {
       productos.push({
         productoid: producto.id,
         cantidad: producto.cantidad,
@@ -75,7 +78,16 @@ export class PropuestaComponent implements OnInit {
     this.productos.forEach(producto => {
       total += (producto.valor_unitario * producto.cantidad)
     });
-    this.totalDescuento = Math.trunc((1 - (this.descuento/100))*total)
+    this.totalDescuento = Math.trunc((1 - (this.descuento / 100)) * total)
     this.total = total;
+  }
+
+  adecuarProductos(productos) {
+    productos.forEach(producto => {
+      if (!producto.valor_unitario)
+        producto.valor_unitario = 0;
+      this.total += (producto.valor_unitario * producto.cantidad)
+    });
+    return productos;
   }
 }

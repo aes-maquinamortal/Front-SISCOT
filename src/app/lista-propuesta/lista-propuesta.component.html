@@ -1,0 +1,14 @@
+<app-main></app-main>
+<div *ngIf="tipoUsuario == 'CLIENTE'">aca los dashboards
+  <hr>
+</div>
+<div *ngIf="tipoUsuario != 'CLIENTE'">
+  <app-propuesta [cotizacionId]="cotizacionId" [productosInput]="" [proveedor]="" [propuestaIdInput]=""></app-propuesta>
+</div>
+<div *ngIf="tipoUsuario == 'CLIENTE'">
+  <div *ngFor="let item of listPropuestas">
+    <app-propuesta [cotizacionId]="" [productosInput]="item.productos" 
+      [proveedor]="item.proveedor.nombre" [propuestaIdInput]="item.id" [descuentoInput]="item.descuento"></app-propuesta>
+      <hr>
+  </div>
+</div>

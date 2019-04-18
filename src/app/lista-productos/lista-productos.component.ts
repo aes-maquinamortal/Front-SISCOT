@@ -13,24 +13,24 @@ export class ListaProductosComponent implements OnInit {
   constructor(private listaProductosService: ListaProductosService) { }
 
   lista = [];
-  
+
   @Output() itemAdicionarLista: EventEmitter<any> = new EventEmitter<any>();
 
   ngOnInit() {
-   let id_producto_carro=[]
+    const idProductoCarro = [];
 
 
-    if (sessionStorage.getItem("userType") === "CLIENTE"){
+    if (sessionStorage.getItem("userType") === "CLIENTE") {
       let carrito = []
-      if(sessionStorage.getItem("carrito")){
+      if (sessionStorage.getItem("carrito")) {
         carrito = JSON.parse(sessionStorage.getItem("carrito"));
       }
       carrito.forEach(element => {
-        id_producto_carro.push(+element.id);
-        
+        idProductoCarro.push(+element.id);
+
       });
 
-      this.listaProductosService.productosCliente(JSON.stringify(id_producto_carro)).subscribe(
+      this.listaProductosService.productosCliente(JSON.stringify(idProductoCarro)).subscribe(
         res => {
           if (res.data) {
             this.lista = Object.assign([], res.data.products);
@@ -50,7 +50,7 @@ export class ListaProductosComponent implements OnInit {
   }
 
   quitarProducto($event) {
-    
+
     const quitar = this.lista.findIndex(f => f.id == $event);
     timer(2000).subscribe(() => {
       // borrar la posicion
@@ -58,15 +58,15 @@ export class ListaProductosComponent implements OnInit {
     });
   }
 
-  adicionarproducto($event){
-  
+  adicionarproducto($event) {
+
     const add = this.lista.findIndex(f => f.id == $event);
     timer(2000).subscribe(() => {
-    
-    this.itemAdicionarLista.emit(this.lista[add]);
-    this.lista.splice(add, 1);
-  });
 
-}
+      this.itemAdicionarLista.emit(this.lista[add]);
+      this.lista.splice(add, 1);
+    });
+
+  }
 
 }

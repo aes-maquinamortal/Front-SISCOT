@@ -35,17 +35,14 @@ export class CarroComprasComponent implements OnInit {
   }
 
   finalizarPedido(){
-    debugger
     let listaCarro=[]
 
     this.ArrayCarrito.forEach(element => {
-      debugger
       listaCarro.push({productoid:element.id, cantidad: element.cantidad})
 
     });
     this.cotizacionService.crearCotizacion(listaCarro).subscribe(
       res=>{
-        debugger
         alert("La Cotización se ha creado con Exito!");
         sessionStorage.setItem('carrito',JSON.stringify([]));
         this.router.navigateByUrl('/home');

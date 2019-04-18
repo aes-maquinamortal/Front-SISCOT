@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import Util from '../../utils';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -56,7 +57,6 @@ export class CotizacionService {
 
 
   public crearCotizacion(productos){
-    debugger
     const mutation = gql`mutation {
     registerCotizacion(
       cotizacionProductoInput:${Util.toGraphQlList(productos)}
@@ -64,11 +64,20 @@ export class CotizacionService {
       id
     }
    }
-    `
-    debugger
+    `;
     return this.apollo.mutate({ mutation });
-  
   }
 
+  propuestasCotizacion(cotizacion): Observable<any>{
+    const query = gql `query {
+      propuestas(cotizacionid: ${cotizacion})
+        { id, total, descuento, estado,
+          proveedor { nit, nombre },
+          productos { nombre,id,cantidad ,referencia,valor_unitario}
+        }
+    }`;
+
+    return this.apollo.query({query});
+  }
   
 }

@@ -21,6 +21,7 @@ import { CarroComprasComponent } from './carro-compras/carro-compras.component';
 import { ListaCotizacionesComponent } from './lista-cotizaciones/lista-cotizaciones.component';
 import { PropuestaComponent } from './propuesta/propuesta.component';
 import { CotizacionClienteComponent } from './cotizacion-cliente/cotizacion-cliente.component';
+import { ListaPropuestaComponent } from './lista-propuesta/lista-propuesta.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CotizacionClienteComponent } from './cotizacion-cliente/cotizacion-clie
     CarroComprasComponent,
     ListaCotizacionesComponent,
     PropuestaComponent,
-    CotizacionClienteComponent
+    CotizacionClienteComponent,
+    ListaPropuestaComponent
   ],
   imports: [
     BrowserModule,

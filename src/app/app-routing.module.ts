@@ -9,6 +9,7 @@ import { GuardaAutenticacionService } from './guarda/guarda-autenticacion.servic
 import { CarroComprasComponent } from './carro-compras/carro-compras.component';
 import { ListaCotizacionesComponent } from './lista-cotizaciones/lista-cotizaciones.component';
 import { PropuestaComponent } from './propuesta/propuesta.component';
+import { ListaPropuestaComponent } from './lista-propuesta/lista-propuesta.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [GuardaAutenticacionService]},
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'carro-compras', component: CarroComprasComponent, canActivate: [GuardaAutenticacionService]},
   { path: 'register_company', component: RegisterCompanyComponent },
   { path: 'cotizaciones', component: ListaCotizacionesComponent, canActivate: [GuardaAutenticacionService]},
-  { path: 'propuesta/:cotizacionId', component: PropuestaComponent, canActivate: [GuardaAutenticacionService]}
+  { path: 'propuesta/:cotizacionId', component: ListaPropuestaComponent, canActivate: [GuardaAutenticacionService]}
 ];
 
 @NgModule({

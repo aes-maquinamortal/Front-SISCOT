@@ -19,7 +19,7 @@
           <th scope="row">{{cotizacion.id}}</th>
           <td>{{cotizacion.fecha}}</td>
           <td>
-            <a routerLink="/cotizacion/{{cotizacion.id}}" *ngIf="isCliente()">Ver cotización</a>
+            <a routerLink="/propuesta/{{cotizacion.id}}" *ngIf="isCliente()">Ver cotización</a>
             <a routerLink="/propuesta/{{cotizacion.id}}" *ngIf="!isCliente()">Ver propuesta</a>
           </td>
         </tr>

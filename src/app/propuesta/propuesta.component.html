@@ -1,7 +1,8 @@
-<app-main></app-main>
+
 <div align='center'>
   <h1>Propuesta</h1>
-  <h2 *ngIf="propuestaId !== null">Estado: {{estado}}</h2>
+  <h2 *ngIf="propuestaId !== null && tipoUsuario!='CLIENTE'">Estado: {{estado}}</h2>
+  <h2 *ngIf="tipoUsuario=='CLIENTE'">Proveedor: {{proveedor}}</h2>
 </div>
 
 <div class="row">
