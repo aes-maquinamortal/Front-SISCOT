@@ -1,6 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { BaseChartDirective, Label } from 'ng2-charts';
+import { DashboardService } from '../servicios/subscription/dashboard.service';
+import { QueryRef } from 'apollo-angular';
+import { Subscription } from 'rxjs';
+import gql from 'graphql-tag';
+
+const subscription = gql`
+  subscription {
+    dashboardsRealtime 
+  }
+`;
 
 @Component({
   selector: 'app-dashboards',
@@ -10,11 +20,9 @@ import { BaseChartDirective, Label } from 'ng2-charts';
 export class DashboardsComponent implements OnInit {
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], backgroundColor: 'lightblue', hoverBackgroundColor: 'lightblue' },
-    // { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    // { data: [180, 48, 77, 90, 100, 27, 40], label: 'Series C'}
+    { data: [], backgroundColor: 'lightblue', hoverBackgroundColor: 'lightblue' }
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
@@ -25,43 +33,43 @@ export class DashboardsComponent implements OnInit {
   };
   public lineChartLegend = false;
   public lineChartType = 'bar';
+  infoQuery: QueryRef<any>;
+  infoSubscription: Subscription;
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
-  constructor() { }
+  constructor(private dashboardServices: DashboardService) { }
 
   ngOnInit() {
-  }
+    this.infoQuery = this.dashboardServices.dashboardInfo(3);
 
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
-      }
-    }
-    this.chart.update();
-  }
-
-  private generateNumber(i: number) {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  }
-
-  public hideOne() {
-    const isHidden = this.chart.isDatasetHidden(1);
-    this.chart.hideDataset(1, !isHidden);
-  }
-
-  public pushOne() {
-    this.lineChartData.forEach((x, i) => {
-      const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
+    this.infoSubscription = this.infoQuery.valueChanges.subscribe(({ data }) => {
+      this.lineChartData[0].data = data.getProposalsDashboard.propuestasAceptadas;
+      this.lineChartLabels = data.getProposalsDashboard.proveedores;
+      this.chart.update();
     });
-    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
+
+    this.setupSubscription();
   }
 
-  public changeLabel() {
-    this.lineChartLabels[2] = ['1st Line', '2nd Line'];
-    // this.chart.update();
+  setupSubscription() {
+    this.infoQuery.subscribeToMore({
+      document: subscription,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev;
+
+        const updateProv = subscriptionData.data.dashboardsRealtime;
+        const index = this.lineChartLabels.findIndex((label) => label === updateProv);
+        if(index >= 0) {
+          this.lineChartData[0].data[index] = +this.lineChartData[0].data[index] + 1;
+        } else {
+          const newData = Object.assign([], this.lineChartData[0].data);
+          newData.push(1);
+          this.lineChartData[0].data = newData;
+          this.lineChartLabels.push(updateProv);
+        }
+        return subscriptionData.data.dashboardsRealtime
+      }
+    })
   }
 }
