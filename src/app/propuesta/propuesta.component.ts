@@ -38,6 +38,10 @@ export class PropuestaComponent implements OnInit {
             this.propuestaId = res.data.propuesta.id;
             this.totalDescuento = res.data.propuesta.total;
             this.descuento = res.data.propuesta.descuento;
+          } else {
+            this.descuento = 0;
+            this.propuestaId = null;
+            this.totalDescuento = 0;
           }
           this.productos = this.adecuarProductos(productos);
         });
