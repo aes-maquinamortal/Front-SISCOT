@@ -90,4 +90,8 @@ export class PropuestaComponent implements OnInit {
     });
     return productos;
   }
+
+  aceptarPropuesta(){
+    
+  }
 }
