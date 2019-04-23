@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { BaseChartDirective, Label } from 'ng2-charts';
 import { DashboardService } from '../servicios/subscription/dashboard.service';
@@ -38,10 +38,12 @@ export class DashboardsComponent implements OnInit {
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective;
 
+  @Input() cotizacionId = null;
+
   constructor(private dashboardServices: DashboardService) { }
 
   ngOnInit() {
-    this.infoQuery = this.dashboardServices.dashboardInfo(3);
+    this.infoQuery = this.dashboardServices.dashboardInfo(this.cotizacionId);
 
     this.infoSubscription = this.infoQuery.valueChanges.subscribe(({ data }) => {
       this.lineChartData[0].data = data.getProposalsDashboard.propuestasAceptadas;
