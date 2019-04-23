@@ -25,10 +25,7 @@ export class GraphQLConfigModule {
         const subscriptionLink = new WebSocketLink({
             uri: environment.urlWS,
             options: {
-                reconnect: true,
-                connectionParams: {
-                    authToken: sessionStorage.getItem('token') || null
-                }
+                reconnect: true
             }
         });
 
@@ -43,11 +40,11 @@ export class GraphQLConfigModule {
 
         const defaultOptions: DefaultOptions = {
             watchQuery: {
-                fetchPolicy: 'network-only',
+                fetchPolicy: 'no-cache',
                 errorPolicy: 'ignore',
             },
             query: {
-                fetchPolicy: 'network-only',
+                fetchPolicy: 'no-cache',
                 errorPolicy: 'all',
             },
         }
