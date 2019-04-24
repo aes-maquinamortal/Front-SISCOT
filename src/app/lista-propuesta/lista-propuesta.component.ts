@@ -13,7 +13,7 @@ export class ListaPropuestaComponent implements OnInit {
   tipoUsuario = sessionStorage.getItem('userType');
   cotizacionId: number;
   listPropuestas = [];
-
+  aceptado = undefined;
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.cotizacionId = +params['cotizacionId'];
@@ -22,10 +22,15 @@ export class ListaPropuestaComponent implements OnInit {
       this.cotizacionService.propuestasCotizacion(this.cotizacionId).subscribe(
         res => {
           this.listPropuestas = Object.assign([], res.data.propuestas);
-          
+          if(this.listPropuestas.length >0 ){
+            this.aceptado = this.listPropuestas[0].estado == 'ACEPTADA' || this.listPropuestas[0].estado == 'RECHAZADA';
+          }
         }
-      )
+      );
     }
   }
 
+  notificarPropuestas(){
+    this.aceptado = true;
+  }
 }

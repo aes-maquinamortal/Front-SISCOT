@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CotizacionService } from '../servicios/cotizacion/cotizacion.service';
 
@@ -9,11 +9,15 @@ import { CotizacionService } from '../servicios/cotizacion/cotizacion.service';
 })
 export class PropuestaComponent implements OnInit {
 
+  
+
   @Input() cotizacionId;
   @Input() productosInput;
   @Input() proveedor;
   @Input() propuestaIdInput;
   @Input() descuentoInput;
+  @Input() aceptado;
+  @Output() aceptadaPropuesta: EventEmitter<any> = new EventEmitter<any>();
   productos = [];
   total = 0;
   totalDescuento = 0;
@@ -53,6 +57,8 @@ export class PropuestaComponent implements OnInit {
     }
 
   }
+
+  
 
   sendPropuesta() {
     const propuesta = {
@@ -96,6 +102,11 @@ export class PropuestaComponent implements OnInit {
   }
 
   aceptarPropuesta(){
-    
+    this.cotizacionService.aceptarPropuesta(this.cotizacionId,this.propuestaId).subscribe(
+      res =>{
+        alert("Propuesta aceptada.")
+        this.aceptadaPropuesta.emit(true);
+      }
+    )
   }
 }

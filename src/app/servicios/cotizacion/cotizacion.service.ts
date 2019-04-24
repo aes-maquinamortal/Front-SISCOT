@@ -79,5 +79,18 @@ export class CotizacionService {
 
     return this.apollo.query({query});
   }
-  
+
+  aceptarPropuesta(idCotizacion,idPropuesta){
+    debugger
+    const mutation = gql`mutation{
+      acceptPropuesta(
+        cotizacionid:${idCotizacion},
+        propuestaid:${idPropuesta}
+      ){
+        id
+      }
+    }`;
+
+    return this.apollo.mutate({mutation});
+  }
 }

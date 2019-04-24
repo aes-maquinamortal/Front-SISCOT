@@ -42,7 +42,7 @@
           <td>
             <input type="number" min="0" max="100" class="form-control" [(ngModel)]="descuento" (change)="updateTotal()"
               [disabled]="propuestaId !== null">
-            <button type="button" class="btn btn-primary" (click)="aceptarPropuesta()">Primary</button>
+            
           </td>
         </tr>
       </tbody>
@@ -50,6 +50,7 @@
 
     <h3 style="text-align: end">Total con descuento: ${{totalDescuento}}</h3>
     <br>
+    <button *ngIf="!aceptado" type="button" style="float:right" class="btn btn-primary" (click)="aceptarPropuesta()">Aceptar Propuesta</button>
     <button *ngIf="propuestaId === null" style="float:right" class="btn btn-sm btn-warning"
       (click)="sendPropuesta()">Enviar propuesta</button>
   </div>
